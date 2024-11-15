@@ -1,7 +1,7 @@
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class RaceConditionExample_CheckThenAct {
+public class RaceConditionExample_CheckThenAct_Solved {
     public static void main(String[] args) {
 
         /*
@@ -22,8 +22,10 @@ public class RaceConditionExample_CheckThenAct {
     private static Runnable getRunnable(Map<String, String> sharedMap) {
         return () -> {
             for(int i  = 0; i < 1_000_000; i++) {
-                if(sharedMap.containsKey("key")){
-                    String value = sharedMap.remove("key");
+                // With a synchronized block, only on thread can execute the 'if' check.
+                synchronized (sharedMap){
+                    if(sharedMap.containsKey("key")){
+                        String value = sharedMap.remove("key");
                     /*
                         Problem:
                             Entering this 'if' should never happen.
@@ -33,14 +35,14 @@ public class RaceConditionExample_CheckThenAct {
                                therefore, performing the remove operation twice,
                                making us enter this if.
                     */
-                    if(value == null){
-                        System.out.println("For iteration: i = " + i + ": We were expecting a value for key, " +
-                                "but it waS null");
+                        if(value == null){
+                            System.out.println("For iteration: i = " + i + ": We were expecting a value for key, " +
+                                    "but it waS null");
+                        }
+                    }else{
+                        sharedMap.put("key", "valueABC");
                     }
-                }else{
-                    sharedMap.put("key", "valueABC");
                 }
-
             }
         };
     }
