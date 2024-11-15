@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ConcurrencyTutorial/ConcurrencyTutorial.iml" filepath="$PROJECT_DIR$/ConcurrencyTutorial/ConcurrencyTutorial.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Projects.iml" filepath="$PROJECT_DIR$/.idea/Projects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RaceCondition/RaceCondition.iml" filepath="$PROJECT_DIR$/RaceCondition/RaceCondition.iml" />
+    </modules>
+  </component>
+</project>
