@@ -26,15 +26,6 @@ public class RaceConditionExample_CheckThenAct_Solved {
                 synchronized (sharedMap){
                     if(sharedMap.containsKey("key")){
                         String value = sharedMap.remove("key");
-                    /*
-                        Problem:
-                            Entering this 'if' should never happen.
-                            If thread 1 and 2 are executing, they are both going to
-                               check that the SharedMap contained the key, but one
-                               is going to change the remove before the other one
-                               therefore, performing the remove operation twice,
-                               making us enter this if.
-                    */
                         if(value == null){
                             System.out.println("For iteration: i = " + i + ": We were expecting a value for key, " +
                                     "but it waS null");
@@ -46,4 +37,13 @@ public class RaceConditionExample_CheckThenAct_Solved {
             }
         };
     }
+    /*
+        Note: ConcurrentHashMap's are not enough to solve this concurrent problem because,
+        When you perform compound actions, such as containsKey() followed by remove(), these actions are not atomic.
+        Another thread could modify the map between the containsKey() check and the subsequent remove() call.
+
+        Note2: Atomic doesn't mean the same atomicity from ACID.
+               Atomic means:
+               The check (containsKey()) and the action (remove()) are not performed as a single, indivisible operation.
+     */
 }
