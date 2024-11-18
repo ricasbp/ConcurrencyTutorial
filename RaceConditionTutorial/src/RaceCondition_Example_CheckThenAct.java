@@ -1,7 +1,7 @@
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class RaceConditionExample_CheckThenAct {
+public class RaceCondition_Example_CheckThenAct {
     public static void main(String[] args) {
 
         /*
@@ -11,7 +11,9 @@ public class RaceConditionExample_CheckThenAct {
          */
         Map<String, String> sharedMap = new ConcurrentHashMap<>();
 
-        Thread thread1 = new Thread(getRunnable(sharedMap)); // Same runnable, but no same instance.
+
+        Thread thread1 = new Thread(getRunnable(sharedMap));
+        // Same runnable, but another instance.
         Thread thread2 = new Thread(getRunnable(sharedMap));
 
         thread1.start();
@@ -22,11 +24,14 @@ public class RaceConditionExample_CheckThenAct {
     private static Runnable getRunnable(Map<String, String> sharedMap) {
         return () -> {
             for(int i  = 0; i < 1_000_000; i++) {
+                // Although shared map offers synchronized access,
+                //   it doesn't protect from CheckThenAct RaceConditions.
+                //
                 if(sharedMap.containsKey("key")){
                     String value = sharedMap.remove("key");
                     /*
                         Problem:
-                            Entering this 'if' should never happen.
+                            Entering this 'if' will never happen.
                             If thread 1 and 2 are executing, they are both going to
                                check that the SharedMap contained the key, but one
                                is going to change the remove before the other one

@@ -1,6 +1,6 @@
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class RaceConditionExample_ReadModifyWrite2_Solved {
+public class RaceCondition_Example_ReadModifyWrite2_Solved {
     public static void main(String[] args) {
 
         /*

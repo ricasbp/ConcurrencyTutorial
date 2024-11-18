@@ -1,6 +1,6 @@
 import java.util.concurrent.*;
 
-public class ExecutorServiceExample {
+public class ExecutorService_Example {
     public static void main(String[] args) {
         // Chapter1:
         // Executor Services is a Thread pool that you can submit tasks to do concurrent execution.

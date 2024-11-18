@@ -1,13 +1,15 @@
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class RaceConditionExample_CheckThenAct_Solved {
+public class RaceCondition_Example_CheckThenAct_Solved {
     public static void main(String[] args) {
 
         /*
-            This hashmaps allows for multiple threads to access the values concurrently, without becoming internally inconsistent.
+            This hashmaps allows for multiple threads to access the values concurrently,
+             without becoming internally inconsistent.
             ConcurrentHashMap is thread-safe and prevents data corruption,
-            but it doesn't implement ACID properties, as they apply to transactions in databases.
+            but it doesn't implement ACID properties,
+            as they apply to transactions in databases.
          */
         Map<String, String> sharedMap = new ConcurrentHashMap<>();
 

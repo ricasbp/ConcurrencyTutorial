@@ -1,12 +1,16 @@
 
 
-public class RaceConditionExample_ReadModifyWrite_Solved {
+public class RaceCondition_Example_ReadModifyWrite_Solved {
     public static void main(String[] args) {
+        // Objective:
+        // Increment a Counter with 2 threads.
 
         SynchronizedCounter synchronizedCounter = new SynchronizedCounter();
         // If we didn't have a Counter that was synchronized,
         //     aka, it didn't provide thread-safe access,
         //     the program would not execute has expected.
+        //  (InterLeavedAccess.png) happens if we don't have locks.
+        //  (SequentialAccess.png) happens if we have locks.
 
         Thread thread1 = new Thread( getRunnable(synchronizedCounter, "Thread1 final count: "));
         Thread thread2 = new Thread( getRunnable(synchronizedCounter, "Thread2 final count: "));
