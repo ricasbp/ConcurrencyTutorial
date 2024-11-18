@@ -2,7 +2,11 @@ package org.example;
 
 public class SynchronizedCounter {
 
-    private long count = 0;
+    private int count;
+
+    public SynchronizedCounter(int count) {
+        this.count = count;
+    }
 
     public synchronized void increment() {
         this.count++;

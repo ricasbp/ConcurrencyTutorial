@@ -5,7 +5,7 @@ public class RaceCondition_Example_ReadModifyWrite_Solved {
         // Objective:
         // Increment a Counter with 2 threads.
 
-        SynchronizedCounter synchronizedCounter = new SynchronizedCounter();
+        SynchronizedCounter synchronizedCounter = new SynchronizedCounter(0);
         // If we didn't have a Counter that was synchronized,
         //     aka, it didn't provide thread-safe access,
         //     the program would not execute has expected.
