@@ -24,9 +24,11 @@ public class DeadLock_Example {
 
         // DeadLock: (DeadlockSimple.png)
         // Runnable1 locks first Lock 1, and then is not able to Lock 2
-        Thread thread1 = new Thread(getRunnable1(syncCount1, syncCount2, lock1, lock2));
         // Runnable2 locks first lock 2, and then not able to lock 1,
         //      because it is waiting for lock 1 to release lock.
+
+        // Fix Deadlock by using the same Runnable for both Threads. (Lock Reordering)
+        Thread thread1 = new Thread(getRunnable1(syncCount1, syncCount2, lock1, lock2));
         Thread thread2 = new Thread(getRunnable2(syncCount1, syncCount2, lock1, lock2));
 
         thread1.start();
@@ -93,6 +95,7 @@ public class DeadLock_Example {
                 System.out.println(threadName + ": locked Count1");
                 syncCount1.increment();
 
+                // Give enough time for the other thread to lock the other Lock.
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
@@ -122,11 +125,13 @@ public class DeadLock_Example {
                 System.out.println(threadName + ": locked Count2");
                 syncCount2.increment();
 
+                //Give enough time for the other thread to lock the other Lock.
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
+
 
                 System.out.println(threadName + ": Trying to lock Lock1 for Count1 ");
                 synchronized (lock1){
