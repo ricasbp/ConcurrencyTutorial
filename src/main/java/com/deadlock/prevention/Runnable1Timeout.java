@@ -10,10 +10,10 @@ public class Runnable1Timeout implements Runnable {
 
     Lock lock1;
     Lock lock2;
-    int counter1;
-    int counter2;
+    Counter counter1;
+    Counter counter2;
 
-    public Runnable1Timeout(Lock lock1, Lock lock2, int counter1, int counter2) {
+    public Runnable1Timeout(Lock lock1, Lock lock2, Counter counter1, Counter counter2) {
         this.lock1 = lock1;
         this.lock2 = lock2;
         this.counter1 = counter1;
@@ -34,16 +34,16 @@ public class Runnable1Timeout implements Runnable {
             int failureCount = 0;
             while(! tryLockBothLocks()){
                 failureCount++;
-                System.out.println(threadName + " failed to lock both locks");
-                System.out.println(threadName + " is waiting before retrying lock." +
+                System.err.println(threadName + " failed to lock both locks");
+                System.err.println(threadName + " is waiting before retrying lock." +
                         " [Tried: " + failureCount + " times]");
                 sleepForRandomPeriod();
             }
 
             if (failureCount > 0){
                 System.out.println(threadName + " Succeeded on locking both locks after " + failureCount + " times");
-                counter1++;
-                counter2++;
+                counter1.counter++;
+                counter2.counter++;
                 System.out.println(threadName + " Incremented both counters");
                 incrementedBothCounters = true;
 

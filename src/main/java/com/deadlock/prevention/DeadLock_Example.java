@@ -1,8 +1,15 @@
-package org.example;
+package com.deadlock.prevention;
+
+import org.example.SynchronizedCounter;
 
 public class DeadLock_Example {
 
-    // DeadLock explained better with actually counters (Critical Sections) to manipulate.
+    // This code contains a example of:
+    // - DeadLock:
+    //         explained better with actually counters (Critical Sections) to manipulate.
+    // - DeadLock prevention:
+    //          Lock Reordering
+
     public static void main(String[] args) {
 
         // Objective:

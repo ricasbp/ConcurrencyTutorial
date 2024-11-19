@@ -9,10 +9,10 @@ public class Runnable2Timeout implements Runnable {
 
     Lock lock1;
     Lock lock2;
-    int counter1;
-    int counter2;
+    Counter counter1;
+    Counter counter2;
 
-    public Runnable2Timeout(Lock lock1, Lock lock2, int counter1, int counter2) {
+    public Runnable2Timeout(Lock lock1, Lock lock2, Counter counter1, Counter counter2) {
         this.lock1 = lock1;
         this.lock2 = lock2;
         this.counter1 = counter1;
@@ -42,8 +42,8 @@ public class Runnable2Timeout implements Runnable {
 
             if (failureCount > 0){
                 System.out.println(threadName + " Succeeded on locking both locks after " + failureCount + " times");
-                counter1++;
-                counter2++;
+                counter1.counter++;
+                counter2.counter++;
                 System.out.println(threadName + " Incremented both counters");
                 incrementedBothCounters = true;
 

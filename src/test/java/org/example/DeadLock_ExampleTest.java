@@ -1,9 +1,8 @@
 package org.example;
 
+import com.deadlock.prevention.DeadLock_Example;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class DeadLock_ExampleTest {
     @Test

@@ -3,7 +3,9 @@ package com.deadlock.prevention;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class DeadLockPrevention {
+public class DeadLockPrevention_TimeoutBackOff {
+
+
     public static void main(String[] args) {
         // DeadLock Prevention 2: Timeout BackOff
         //     If you try to lock a locked Lock, the thread stops trying,
@@ -12,12 +14,11 @@ public class DeadLockPrevention {
         Lock lock1 = new ReentrantLock();
         Lock lock2 = new ReentrantLock();
 
-        int counter1 = 0;
-        int counter2 = 0;
+        Counter counter1 = new Counter(1);
+        Counter counter2 = new Counter(1);
 
-        System.out.println("counter1 is " + counter1);
-        System.out.println("counter2 is " + counter2);
-
+        System.out.println("counter1 is " + counter1.counter);
+        System.out.println("counter2 is " + counter2.counter);
 
         // Runnable1 locks first lock1, and then tries lock2
         Runnable runnable1 = new Runnable1Timeout(lock1, lock2, counter1, counter2);
@@ -38,8 +39,8 @@ public class DeadLockPrevention {
             throw new RuntimeException(e);
         }
 
-        System.out.println("counter1 is " + counter1);
-        System.out.println("counter2 is " + counter2);
+        System.out.println("counter1 is " + counter1.counter);
+        System.out.println("counter2 is " + counter2.counter);
 
     }
 
