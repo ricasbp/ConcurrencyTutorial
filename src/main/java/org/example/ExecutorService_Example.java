@@ -4,6 +4,13 @@ import java.util.concurrent.*;
 
 public class ExecutorService_Example {
     public static void main(String[] args) {
+
+
+        /* I understood better what executorService actually does with this video:
+            Java ExecutorService - Part 1 - Introduction: https://www.youtube.com/watch?v=6Oo-9Can3H8&ab_channel=DefogTech
+         */
+
+
         // Chapter1:
         // Executor Services is a Thread pool that you can submit tasks to do concurrent execution.
         ExecutorService executorService = Executors.newFixedThreadPool(10);
