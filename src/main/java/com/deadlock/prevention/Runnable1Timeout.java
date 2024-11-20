@@ -34,8 +34,8 @@ public class Runnable1Timeout implements Runnable {
             int failureCount = 0;
             while(! tryLockBothLocks()){
                 failureCount++;
-                System.err.println(threadName + " failed to lock both locks");
-                System.err.println(threadName + " is waiting before retrying lock." +
+                System.out.println(threadName + " failed to lock both locks");
+                System.out.println(threadName + " is waiting before retrying lock." +
                         " [Tried: " + failureCount + " times]");
                 sleepForRandomPeriod();
             }

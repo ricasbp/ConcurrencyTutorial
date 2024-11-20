@@ -2,6 +2,8 @@ package com.deadlock.prevention;
 
 import org.example.SynchronizedCounter;
 
+import java.util.HashMap;
+
 public class DeadLock_Example {
 
     // This code contains a example of:
