@@ -70,8 +70,7 @@ public class Runnable2Timeout implements Runnable {
             return false;
         }
 
-        try {
-            lock1Succeeded = lock1.tryLock(1000, TimeUnit.MILLISECONDS);
+        try { lock1Succeeded = lock1.tryLock(1000, TimeUnit.MILLISECONDS);
             if (! lock1Succeeded) {
                 lock2.unlock();
                 return false;
@@ -80,6 +79,8 @@ public class Runnable2Timeout implements Runnable {
             System.out.println(threadName + " interrupted trying to lock Lock2");
             return false;
         }
+
+        // access to both locks
         return true;
     }
 

@@ -78,7 +78,9 @@ public class Runnable1Timeout implements Runnable {
             System.out.println(threadName + " interrupted trying to lock Lock2");
             return false;
         }
-            return true;
+
+        // access to both locks
+        return true;
     }
 
     private void sleepForRandomPeriod() {
