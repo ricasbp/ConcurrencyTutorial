@@ -15,7 +15,7 @@ public class DeadLock_Example {
     public static void main(String[] args) {
 
         // Objective:
-        // Shown by "Deadlock.png", thread's want to access both variables in locks
+        // Shown by "DeadlockSimple.png", thread's want to access two variables in two separate locks
         //    but are not capable of it.
 
         // We can use standard lock for locks
@@ -58,7 +58,7 @@ public class DeadLock_Example {
             // 2. Timeout backoff (Next Tutorial)
             // 3. Deadlock Detection (Next Tutorial)
             //
-            // 1. Lock Reordering: Make sure that locks dont lock lock's. (DeadlockSimple_fix.png)
+            // 1. Lock Reordering: Make sure that locks dont lock both lock's. (DeadlockSimple_fix.png)
             //
             //   Fix would be to manually change the code, so that Runnable1_Deadlock and Runnable2_Deadlock
             //       they both lock Lock1 and Lock2 concurrently.
@@ -68,7 +68,7 @@ public class DeadLock_Example {
             // Circular Deadlock:
             // The thing is, we can have Threads that need to use two or three locks, and don't
             //     know how many locks they need. (DeadlockCircular.png)
-            // e.g: Thread 1 locks Lock1, but doesn't know that is going to lock Lock2.
+            // e.g: Thread 1 locks Lock1, but doesn't know what is locking Lock2.
             //
             // Note: (DeadlockComplex.png)
             // Deadlocks will always block any other extra threads that try to access deadlocks that are happening.

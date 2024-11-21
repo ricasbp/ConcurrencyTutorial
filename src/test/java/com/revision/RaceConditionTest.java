@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 class RaceConditionTest {
 
     SynchronizedCounter counter;
+    Runnable runnableIncrementCounter;
     int incrementCount;
 
     Thread t1;
@@ -18,14 +19,27 @@ class RaceConditionTest {
     Thread t3;
     Thread t4;
 
-    Runnable runnableIncrementCounter;
 
     @BeforeEach
     void setUp() {
         counter  = new SynchronizedCounter(0);
         incrementCount = 5;
 
-        runnableIncrementCounter = RaceConditionRunnable.getRunnable(counter, incrementCount);
+        runnableIncrementCounter = new Runnable() {
+            public void run() {
+                for(int i = 0; i < incrementCount; i++) {
+                    synchronized (counter) {
+                        if(counter.getCounter() >= 1){
+                            counter.incrementCounter();
+                        }
+                        counter.incrementCounter();
+                        System.out.println(counter.getCounter());
+                    }
+                }
+                System.out.println("Counter value= " + counter.getCounter());
+            };
+        };
+
         this.t1 = new Thread(runnableIncrementCounter);
         this.t2 = new Thread(runnableIncrementCounter);
         this.t3 = new Thread(runnableIncrementCounter);
