@@ -40,14 +40,11 @@ public class Runnable2Timeout implements Runnable {
                 sleepForRandomPeriod();
             }
 
-            if (failureCount > 0){
-                System.out.println(threadName + " Succeeded on locking both locks after " + failureCount + " times");
-                counter1.counter++;
-                counter2.counter++;
-                System.out.println(threadName + " Incremented both counters");
-                incrementedBothCounters = true;
-
-            }
+            System.out.println(threadName + " Succeeded on locking both locks after " + failureCount + " times");
+            counter1.counter++;
+            counter2.counter++;
+            System.out.println(threadName + " Incremented both counters");
+            incrementedBothCounters = true;
 
             lock1.unlock();
             lock2.unlock();

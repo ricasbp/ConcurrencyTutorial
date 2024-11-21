@@ -23,7 +23,9 @@ public class DeadLockPrevention_TimeoutBackOff {
         // Runnable1 locks first lock1, and then tries lock2
         Runnable runnable1 = new Runnable1Timeout(lock1, lock2, counter1, counter2);
 
-        // Runnable2 tries to lock lock2, and then tries lock1. If not capable, sleeps, and tries again later.
+        // Runnable2 locks lock2, and then tries locking lock1.
+        //     If not capable of locking1, stops lock2, sleeps, and tries again later.
+        // Allowing Runnabl1 of working with lock1.
         Runnable runnable2 = new Runnable2Timeout(lock1, lock2, counter1, counter2);
 
         Thread thread1 = new Thread(runnable1);
