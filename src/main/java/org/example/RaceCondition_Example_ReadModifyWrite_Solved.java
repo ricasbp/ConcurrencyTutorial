@@ -29,4 +29,5 @@ public class RaceCondition_Example_ReadModifyWrite_Solved {
         // This is a shorthand way of creating an anonymous inner class that implements Runnable,
         //   without having to write out new Runnable() { public void run() { ... } }.
     }
+
 }
